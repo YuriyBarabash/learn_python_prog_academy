@@ -7,10 +7,8 @@ print(text)
 from translate import Translator as tr
 en = tr(from_lang='Russian', to_lang='English')
 print('Введите пять слов для перевода(ru-en)')
-word_en = []
 word_rus = [input(f'слово {i} ') for i in range (1,6)]
-for i in word_rus:
-    word_en.append(en.translate(i))
+word_en = [en.translate(i) for i in word_rus]
 d ={i:j for i,j in list(zip(word_rus,word_en))}
 print(d, file = open('vocabul.txt','a'))
 for i,j in d.items():
