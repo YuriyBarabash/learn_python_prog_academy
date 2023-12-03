@@ -1,0 +1,90 @@
+# Task 1
+def func(*args):
+    """arithmetic progression"""
+    for j in range(len(args)-2):
+        if args[j+1] - args[j] != args[j+2] - args[j+1]:
+            return f'No consistency...'
+    return args[-1] + args[1] - args[0]
+
+
+def func_2(*args):
+    """geometric progression"""
+    for j in range(len(args) - 2):
+        if args[j+1]/args[j] != args[j+2]/args[j+1]:
+            return f'No consistency...'
+    return int(args[-1]*args[1]/args[0])
+
+
+def func_3(x, *args):
+    """consistency likes n^x,(n+step)^x..."""
+    lst = [round(i**(1/x), 3) for i in args]
+    if isinstance(func(*lst), float):
+        return int((args[-1]**(1/x) + args[1]**(1/x) - args[0]**(1/x))**x)
+    else:
+        return f'No consistency...'
+
+
+def func_4(*args):
+    """consistency likes n(1), n(2)+x, n(3)+(x+1),...,n(y)+(x+y-2)"""
+    for j in range(len(args) - 2):
+        if args[j+1] - args[j] != args[j+2] - args[j+1] - 1:
+            return f'No consistency...'
+    return args[-1]*2 - args[-2] + 1
+
+def func_5(*args):
+    """consistency of Fibonacci"""
+    for j in range(len(args)-2):
+        if args[j+2] != args[j] + args[j+1]:
+            return f'No consistency...'
+    return args[-1] + args[-2]
+
+
+def func_6(*args):
+    """Factorial"""
+    for j in range(1, len(args)):
+        if args[j] != (j+1)*args[j-1]:
+            return f'No consistency...'
+    return args[-1]*(len(args)+1)
+
+
+n = input('string of numbers (min 3 num) : ')
+n = list(map(int, n.split()))
+
+def switch(*args):
+    if args[1] - args[0] == args[2] - args[1] and isinstance(func(*args), int):
+        return func(*args)
+    elif args[0] != 0 and args[1] / args[0] == args[2] / args[1] and isinstance(func_2(*args), int | float):
+        return func_2(*args)
+    elif args[1] - args[0] == args[2] - args[1] - 1:
+        return func_4(*args)
+    elif args[2] == args[0] + args[1]:
+        return func_5(*args)
+    elif args[1] == 2*args[0]:
+        return func_6(*args)
+    else:
+        for i in range(2, 5):
+            if round(args[1]**(1/i), 3) - round(args[0]**(1/i), 3) == \
+                    round(args[2]**(1/i), 3) - round(args[1]**(1/i), 3):
+                a = i
+            else:
+                return f'No consistency...'
+        return func_3(a, *n)
+    return f'No consistency...'
+
+
+# Task 2
+lst = []
+lst_num_1 = []
+for i in range(999, 99, -1):
+    for j in range(999, 99, -1):
+        mul = str(i * j)
+        if mul[:3] == mul[:2:-1]:
+            lst.append(mul)
+            lst_num_1.append(i)
+for i, j in enumerate(lst):
+    if j == max(lst):
+        index = i
+for i, j in enumerate(lst_num_1):
+    if index == i:
+        num_1 = j
+print(f'{max(lst)}, {num_1} * {int(int(max(lst))/(num_1))}')
