@@ -72,7 +72,7 @@ def switch(*args):
     return f'No consistency...'
 
 
-# Task 2
+# Task 2 процедурно
 lst = []
 lst_num_1 = []
 for i in range(999, 99, -1):
@@ -89,3 +89,21 @@ for i, j in enumerate(lst_num_1):
     if index == i:
         num_1 = j
 print(f'{max(lst)}, {num_1} * {int(int(max(lst))/(num_1))}')
+
+# Task 2 через функцию
+
+def polindrom(*num):
+    mul = str(num[0] * num[1])
+    if mul[:3] == mul[:2:-1]:
+        return int(mul), num[0], num[1]
+    return None
+
+
+res = []
+for i in range(999, 99, -1):
+    for j in range(999, 99, -1):
+        lst = [i, j]
+        if isinstance(polindrom(*lst), tuple):
+            res.append(polindrom(*lst))
+            break
+print(max(res))
