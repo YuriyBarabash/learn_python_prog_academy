@@ -81,6 +81,7 @@ for i in range(999, 99, -1):
         if mul[:3] == mul[:2:-1]:
             lst.append(mul)
             lst_num_1.append(i)
+            break
 for i, j in enumerate(lst):
     if j == max(lst):
         index = i
