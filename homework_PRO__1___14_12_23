@@ -1,0 +1,137 @@
+# Task 1
+import random
+import time
+
+
+def addition(func):
+    def wrapper(*args):
+        lst = [i for i in range(random.randint(1, 10))]
+        print(func(*args), lst)
+        return f'{sum([sum(func(*args)), sum(lst)])}'
+    return wrapper
+
+
+def func_user_random_list(lst: list) -> list:
+    lst = lst + [random.randint(1, 30) for _ in range(random.randint(1, 10))]
+    return lst
+
+
+def func_user_pow(lst: list, n: int) -> list:
+    lst = [i**n for i in lst]
+    return lst
+
+
+a = addition(func_user_random_list)
+b = addition(func_user_pow)
+print(a([1, 2, 3]))
+print(b([5, 6, 7, 8], 2))
+
+# Task 2
+
+
+def writing_file(file_name):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            res = func(*args, **kwargs)
+            with open(file_name, "a") as file:
+                file.write(f'{res} \n')
+            return res
+        return wrapper
+    return decorator
+
+
+@writing_file('info.txt')
+def meeting(s):
+    lst = []
+    res = []
+    s = s.upper()
+    s = s.split(';')
+    for i in s:
+        lst.append(i.split(':'))
+    for i in lst:
+        res.append('('+i[1]+', '+i[0]+')')
+    res = sorted(res)
+    return ''.join(res)
+
+
+print(meeting("Alexis:Wahl;John:Bell;Victoria:Schwarz;Abba:Dorny;Grace:Meta;Ann:Arno;Madison:STAN;Alex:Cornwell;"
+              "Lewis:Kern;Megan:Stan;Alex:Korn;Alex:Kor"))
+
+# Task 3
+
+
+def measure_time(func):
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        res = func(*args, **kwargs)
+        stop = time.perf_counter()
+        return f'{res}-----{stop - start:.8f} sec'
+    return wrapper
+
+
+@measure_time
+def largest_pair_sum(numbers):
+    a = max(numbers)
+    numbers.remove(a)
+    b = max(numbers)
+    return a+b
+
+
+print(largest_pair_sum([10**8, 14**6, 2*23, 23**12, 19**18]))
+
+# Task 4
+
+
+def limit_calls(max_calls):
+    count = []
+    
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            res = func(*args, **kwargs)
+            count.append(0)
+            if len(count) > max_calls:
+                return None
+            return res
+        return wrapper
+    return decorator
+
+
+@limit_calls(3)
+def some_function(n):
+    return n
+
+
+print(some_function(1))
+print(some_function(2))
+print(some_function(3))
+print(some_function(4))
+print(some_function(5))
+print(some_function(6))
+
+# Task 5
+
+
+def cache_results(func):
+    buf = [1]
+
+    def wrapper(n):
+        res = func(n)
+        buf.append(res)
+        return res
+    return wrapper
+
+
+@measure_time
+@cache_results
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+
+print(fibonacci(12))  # Обчислюється
+print(fibonacci(12))  # Використання кешу
+
+
+
