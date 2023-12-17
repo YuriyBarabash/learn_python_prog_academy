@@ -1,0 +1,6 @@
+{'процессор': 'processor ',
+'действие': 'action',
+'организация': 'organisation',
+'условие': 'condition',
+'задание': 'задание'}
+{'загрузка': 'download', 'ответственность': 'responsibility', 'определение': 'determination', 'экран': 'screen', 'разработка': 'engineering design'}/n
