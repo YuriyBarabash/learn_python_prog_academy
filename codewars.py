@@ -357,3 +357,13 @@ import math
 #     return False
 #
 # print(power_of_two(38685626227668133590597628))
+
+
+def delete_nth(order, max_e):
+    order = order[::-1]
+    for j in order:
+        if order.count(j) >= max_e:
+            order.remove(j)
+    return order[::-1]
+
+print(delete_nth([2, 6, 43, 5, 39, 5, 39, 43, 43, 43, 43, 39, 6, 5, 5, 43, 39, 5, 5, 5, 43, 2, 6, 6, 2, 5, 39, 39, 6, 39, 39], 3))
