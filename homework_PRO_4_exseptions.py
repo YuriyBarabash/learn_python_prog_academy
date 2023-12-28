@@ -23,15 +23,10 @@ class Cart:
     def add_product(self, product: Product, quantity: int | float = 1):
         if not isinstance(product, Product) or not isinstance(quantity, (int, float)):
             raise TypeError("Invalid type.")
-        try:
-            if product.price <= 0:
-                raise IncorrectValue(product.price, f'{product.name} price must be bigger then 0')
-            self.products.append(product)
-            self.quantities.append(quantity)
-        except IncorrectValue as err:
-            print(err)
-
-
+        if product.price <= 0:
+            raise IncorrectValue(product.price, f'{product.name} price must be bigger then 0')
+        self.products.append(product)
+        self.quantities.append(quantity)
 
     def total(self):
         return sum(product.price * quantity for product, quantity in zip(self.products, self.quantities))
@@ -43,11 +38,11 @@ class Cart:
         res += f'Total: {self.total()} UAH'
         return res
 
-product_1 = Product('Tomatos', -1.22, 'red-pink,made in Montenegro')
+product_1 = Product('Tomatos', 1.22, 'red-pink,made in Montenegro')
 product_2 = Product('Potatos', 0.86, 'small, homemade, type: kornishon')
 product_3 = Product('Pork', 4.25, 'frash, local, best quality')
 cart = Cart()
-cart.add_product(product_1,  3)
+cart.add_product(product_1,  12)
 cart.add_product(product_2,  5)
 cart.add_product(product_3,  4)
 print(cart)
@@ -102,13 +97,12 @@ class Order:
 
     def total_price(self, customer: Customer = None):
         discount = customer.discount.discount() if customer else 0
-        if 1 < discount < 0:
-            raise PercentError(discount, 'discount mast be in range 0 - 100 %')
-        else:
-            total = 0
-            for product, quantity in zip(self.products, self.quantities):
-                total += product.price * quantity
-            return f'{total * (1 - discount): .2f}'
+        if discount > 1 or discount < 0:
+            raise PercentError(int(discount * 100), 'discount mast be in range 0 - 100 %')
+        total = 0
+        for product, quantity in zip(self.products, self.quantities):
+            total += product.price * quantity
+        return f'{discount} {total * (1 - discount): .2f}'
 
     def __str__(self):
         return '\n'.join(map(str, self.products))
