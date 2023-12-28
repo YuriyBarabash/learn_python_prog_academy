@@ -15,6 +15,9 @@ class IncorrectValue(Exception):
         self.message = message
 
 
+    def __str__(self):
+        return f'{self.price}, {self.message}'
+
 class Cart:
     def __init__(self):
         self.products = []
@@ -39,13 +42,16 @@ class Cart:
         return res
 
 product_1 = Product('Tomatos', 1.22, 'red-pink,made in Montenegro')
-product_2 = Product('Potatos', 0.86, 'small, homemade, type: kornishon')
+product_2 = Product('Potatos', -0.86, 'small, homemade, type: kornishon')
 product_3 = Product('Pork', 4.25, 'frash, local, best quality')
 cart = Cart()
-cart.add_product(product_1,  12)
-cart.add_product(product_2,  5)
-cart.add_product(product_3,  4)
-print(cart)
+try:
+    cart.add_product(product_1,  12)
+    cart.add_product(product_2,  5)
+    cart.add_product(product_3,  4)
+    print(cart)
+except IncorrectValue as err:
+    print(err)
 
 # Task 2
 
@@ -70,6 +76,10 @@ class PercentError(Exception):
     def __init__(self, value, massage):
         self.value = value
         self.massage = massage
+        #super().__init__()
+
+    def __str__(self):
+        return f'Error!! discount {discount} = {self.value}%, {self.massage}'
 
 class Product:
     def __init__(self, name: str, price: float, product_description: str):
@@ -98,7 +108,7 @@ class Order:
     def total_price(self, customer: Customer = None):
         discount = customer.discount.discount() if customer else 0
         if discount > 1 or discount < 0:
-            raise PercentError(int(discount * 100), 'discount mast be in range 0 - 100 %')
+            raise PercentError (int(discount * 100), 'discount mast be in range 0 - 100 %')
         total = 0
         for product, quantity in zip(self.products, self.quantities):
             total += product.price * quantity
@@ -131,5 +141,8 @@ if __name__ == '__main__':
     order.add_product(product_1, 4)
     order.add_product(product_2, 3)
     order.add_product(product_3, 2)
+    try:
+        print(order.total_price(customer))
+    except PercentError as err:
+        print(err)
 
-    print(order.total_price(customer))
