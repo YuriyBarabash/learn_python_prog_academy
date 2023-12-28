@@ -3,7 +3,6 @@ class Discount:
     def discount(self):
         return 0
 
-
 class Regular(Discount):
     def discount(self):
         return 0.01

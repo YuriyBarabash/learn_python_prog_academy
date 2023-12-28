@@ -37,11 +37,11 @@ class Cart:
         return res
 
 
-card = Cart()
+cart = Cart()
 card.add_product(product_1,  3)
 card.add_product(product_2,  5)
 card.add_product(product_3,  4)
-print(card)
+print(cart)
 
 # Task 2
 
