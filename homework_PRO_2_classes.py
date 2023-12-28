@@ -15,22 +15,32 @@ product_2 = Product('Potatos', 0.86, 'small, homemade, type: kornishon')
 product_3 = Product('Pork', 4.25, 'frash, local, best quality')
 
 
-class Card:
+class Cart:
     def __init__(self):
-        self.products = {}
+        self.products = []
+        self.quantities = []
 
-    def add_product(self, product, price: float, qry: int):
-        if product not in self.products:
-            self.products[product] = price*qry
+    def add_product(self, product: Product, quantity: int | float = 1):
+        if not isinstance(product, Product) or not isinstance(quantity, (int, float)):
+            raise TypeError("Invalid type.")
+        self.products.append(product)
+        self.quantities.append(quantity)
+
+    def total(self):
+        return sum(product.price * quantity for product, quantity in zip(self.products, self.quantities))
 
     def __str__(self):
-        return f'{self.products}  total bill {sum(self.products.values())}$'
+        res = str()
+        for product, quantity in zip(self.products, self.quantities):
+            res += f'{product.name} - {product.price} x {quantity} = {product.price * quantity} UAH\n'
+        res += f'Total: {self.total()} UAH'
+        return res
 
 
-card = Card()
-card.add_product(product_1.name, product_1.price, 3)
-card.add_product(product_2.name, product_2.price, 5)
-card.add_product(product_3.name, product_3.price, 4)
+card = Cart()
+card.add_product(product_1,  3)
+card.add_product(product_2,  5)
+card.add_product(product_3,  4)
 print(card)
 
 # Task 2
