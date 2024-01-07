@@ -38,9 +38,9 @@ class Cart:
 
 
 cart = Cart()
-card.add_product(product_1,  3)
-card.add_product(product_2,  5)
-card.add_product(product_3,  4)
+cart.add_product(product_1,  3)
+cart.add_product(product_2,  5)
+cart.add_product(product_3,  4)
 print(cart)
 
 # Task 2

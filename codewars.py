@@ -386,3 +386,41 @@ import math
 #             return i
 #     return -1
 # print(find_even_index([0,0,0,0,0]))
+
+
+# def to_camel_case(text):
+#     res = str()
+#     if len(text) > 0:
+#         for i in '-_':
+#
+#             if i in text:
+#                 text = text.replace(i, ' ')
+#
+#         text = text.split()
+#
+#         for i in text[1:]:
+#             res += i.capitalize()
+#         return text[0] + res
+#
+#     return ''
+#
+# print(to_camel_case(""))
+
+# def count_characters(s):
+#     char_count = {}
+#     for char in s:
+#         char_count[char] = char_count.get(char, 0) + 1
+#     return char_count
+#
+# print(count_characters('abarbara'))
+
+# from datetime import datetime
+#
+# def checkCoupon(enteredCode, correctCode, currentDate, expirationDate):
+#     print(datetime.strptime(currentDate,'%B %d, %Y'))
+#     return enteredCode == correctCode and datetime.strptime(currentDate, "%B %d, %Y") <= datetime.strptime(
+#         expirationDate, "%B %d, %Y")
+#
+# print(checkCoupon('123','123','September 5, 2014','October 1, 2014'))
+
+
