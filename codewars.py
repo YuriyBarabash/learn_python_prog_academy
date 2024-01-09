@@ -423,4 +423,12 @@ import math
 #
 # print(checkCoupon('123','123','September 5, 2014','October 1, 2014'))
 
+# def create_phone_number(n):
+#     n = list(map(str,n))
+#     a = ''.join(n[:3])
+#     b = ''.join(n[3:6])
+#     c = ''.join(n[6:])
+#
+#     return f'({a}) {b}-{c}'
+# print(create_phone_number([1,2,3,4,5,6,7,8,9]))
 

@@ -5,6 +5,15 @@ class Menu:
     def add_item(self, item_name, price):
         self.menu_items[item_name] = price
 
+class DishNotFound(Exception):
+    def __init__(self, dish, massage):
+        self.dish = dish
+        self.massage = massage
+        super().__init__()
+
+    def __str__(self):
+        return f'{self.dish} {self.massage}'
+
 class Order:
     def __init__(self):
         self.order_items = {}
@@ -18,8 +27,8 @@ class Order:
                 self.order_items[item_name] = 1
             return self
         else:
-            print(f"{item_name} not found in the menu.")
-            return self
+            raise DishNotFound(item_name, 'not found in the menu.')
+
 
 # Example usage
 menu = Menu()
