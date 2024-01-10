@@ -432,3 +432,21 @@ import math
 #     return f'({a}) {b}-{c}'
 # print(create_phone_number([1,2,3,4,5,6,7,8,9]))
 
+# def generate_primes():
+#     for num in range(1, 101):
+#         if is_prime(num):
+#             yield num
+
+def my_range(start, stop, step=1):
+    current = start
+    if step > 0:
+        while current < stop:
+            yield current
+            current += step
+    elif step < 0:
+        while current > stop:
+            yield current
+            current -= abs(step)
+
+for i in my_range(15, 1, -4):
+    print(i)
