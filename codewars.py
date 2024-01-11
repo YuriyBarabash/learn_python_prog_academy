@@ -437,16 +437,27 @@ import math
 #         if is_prime(num):
 #             yield num
 
-def my_range(start, stop, step=1):
-    current = start
-    if step > 0:
-        while current < stop:
-            yield current
-            current += step
-    elif step < 0:
-        while current > stop:
-            yield current
-            current -= abs(step)
 
-for i in my_range(15, 1, -4):
-    print(i)
+
+# def diamond(n):
+#     a = 1
+#     b = n
+#     strng = str()
+#     if n % 2 == 0 or n <= 0:
+#         return None
+#     elif n == 1:
+#         return '*\n'
+#     else:
+#         while a <= n:
+#             strng += ' ' * (b // 2) + '*' * a + '\n'
+#             a += 2
+#             b -= 2
+#         a = n - 2
+#         b = 1
+#         while a >= 1:
+#             strng += ' ' * b + '*' * a + '\n'
+#
+#             a -= 2
+#             b += 1
+#     return strng
+# print(diamond(21))
