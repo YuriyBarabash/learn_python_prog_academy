@@ -64,8 +64,16 @@ class Dish:
         return DishIterator(self.names, self.prices)
 
     def __getitem__(self, item):
+        if isinstance(item, int) and item > len(self.names) - 1:
+            raise IndexError(f'Index of product name out of range, max = {len(self.names)-1}')
+
         if isinstance(item, int):
             return self.names[item], self.prices[item]
+
+        if isinstance(item, slice):
+            res_names = self.names[item]
+            res_prices = self.prices[item]
+            return list(zip(res_names, res_prices))
 
     def __len__(self):
         return len(self.names)
@@ -87,8 +95,9 @@ def main():
 
     print(len(dish))
 
-    print(dish[2])
-
+    #print(dish[5])
+    for i,j in dish[::2]:
+        print(f'{i}----{j}$')
 
 if __name__ == '__main__':
     main()

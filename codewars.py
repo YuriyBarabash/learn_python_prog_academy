@@ -461,3 +461,17 @@ import math
 #             b += 1
 #     return strng
 # print(diamond(21))
+
+def binary_to_string(binary):
+    strng = str()
+    lst = binary.split('0b')
+    lst = ['0b'+i for i in lst][1:]
+
+    # for i in lst:
+    #     strng += chr(i//2)
+    return lst
+
+print(binary_to_string('0b10000110b11000010b1110100'))
+
+print(chr(0b1000011))
+print(type(0b1000011))
