@@ -1,0 +1,2 @@
+2024-01-14 11:51:21,589 - __main__ - INFO - Student Ivan added to group Group1
+2024-01-14 11:51:21,589 - __main__ - WARNING - Student Ivan already in group Group1

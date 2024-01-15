@@ -17,8 +17,8 @@ class User:
             raise AttributeError("Cannot directly set 'first_name' or 'last_name'")
         super().__setattr__(name, value)
 
-    def __getattr__(self, name):
-        raise AttributeError(f"'User' object has no attribute '{name}'")
+    # def __getattr__(self, name):
+    #     raise AttributeError(f"'User' object has no attribute '{name}'")
 
 
 user = User("Yuriy", "Barabash")

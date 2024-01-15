@@ -1,13 +1,13 @@
 import logging
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.CRITICAL)
+logger.setLevel(logging.DEBUG)
 
 terminal_handler = logging.StreamHandler()
 file_handler = logging.FileHandler('log.txt')
 
 terminal_handler.setLevel(logging.DEBUG)
-file_handler.setLevel(logging.WARNING)
+file_handler.setLevel(logging.INFO)
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 terminal_handler.setFormatter(formatter)
@@ -15,16 +15,6 @@ file_handler.setFormatter(formatter)
 
 logger.addHandler(terminal_handler)
 logger.addHandler(file_handler)
-
-
-class StudentsLimitError(Exception):
-    def __init__(self, max_students, message='Too many students'):
-        self.max_students = max_students
-        self.message = message
-        super().__init__()
-
-    def __str__(self):
-        return f'Limit of students is {self.max_students}\n. {self.message}'
 
 
 class Student:
@@ -46,15 +36,16 @@ class Group:
         self.__students = []
 
     def add_student(self, student: Student):
+        logger.debug(f'{type(student)} {student}')
         if not isinstance(student, Student):
-            logger.debug(f'Wrong type {type(student)}')
+            logger.warning(f'Wrong type {type(student)}')
             raise TypeError('Not a Student')
         if student in self.__students:
-            logger.debug(f'Student {student} already in group {self.title}')
+            logger.warning(f'Student {student} already in group {self.title}')
             raise ValueError('Student already in group')
         if len(self.__students) == self.max_students:
             logger.warning(f'Limit of students is {self.max_students}')
-            raise StudentsLimitError(self.max_students)
+            raise Exception(self.max_students)
 
         self.__students.append(student)
         logger.info(f'Student {student} added to group {self.title}')
@@ -76,4 +67,4 @@ if __name__ == '__main__':
         group.add_student(st_3)
         group.add_student(st_4)
     except Exception as e:
-        print(e)
+        pass

@@ -12,8 +12,8 @@ class Account:
         else:
             raise AttributeError("Cannot directly modify attributes. Use another methods.")
 
-    def __getattr__(self, name):
-        raise AttributeError(f"Current object has no attribute '{name}'")
+    # def __getattr__(self, name):
+    #     raise AttributeError(f"Current object has no attribute '{name}'")
 
 
 my_account = Account(own_balance=1000)

@@ -462,16 +462,20 @@ import math
 #     return strng
 # print(diamond(21))
 
-def binary_to_string(binary):
-    strng = str()
-    lst = binary.split('0b')
-    lst = ['0b'+i for i in lst][1:]
+def sum_of_intervals(intervals):
+    intervals = sorted(intervals, key=lambda x: x[0])
+    print(intervals)
+    total_length = 0
+    current_interval = list(intervals[0])
+    print(current_interval)
+    for interval in intervals[1:]:
+        if interval[0] <= current_interval[1]:
+            current_interval[1] = max(current_interval[1], interval[1])
+        else:
+            total_length += current_interval[1] - current_interval[0]
+            current_interval = interval
+    total_length += current_interval[1] - current_interval[0]
+    return total_length
 
-    # for i in lst:
-    #     strng += chr(i//2)
-    return lst
+print(sum_of_intervals([(1, 4), (7, 10), (3, 5)]))
 
-print(binary_to_string('0b10000110b11000010b1110100'))
-
-print(chr(0b1000011))
-print(type(0b1000011))
