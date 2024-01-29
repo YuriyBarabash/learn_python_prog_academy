@@ -30,8 +30,8 @@ class Triangle(Shape):
         self.c = c
 
     def area(self):
-        p = (self.a + self.b + self.c)/2
-        return p * ((p - self.a) * (p - self.b) * (p - self.c)) ** 0.5
+        p = self.perimeter()/2
+        return (p * ((p - self.a) * (p - self.b) * (p - self.c))) ** 0.5
 
     def perimeter(self):
         return self.a + self.b + self.c

@@ -192,6 +192,8 @@ import time
 import timeit
 
 
+
+
 def measure_time(func):
     def wrapper(*args, **kwargs):
         start = time.perf_counter()
@@ -462,20 +464,127 @@ import math
 #     return strng
 # print(diamond(21))
 
-def sum_of_intervals(intervals):
-    intervals = sorted(intervals, key=lambda x: x[0])
-    print(intervals)
-    total_length = 0
-    current_interval = list(intervals[0])
-    print(current_interval)
-    for interval in intervals[1:]:
-        if interval[0] <= current_interval[1]:
-            current_interval[1] = max(current_interval[1], interval[1])
-        else:
-            total_length += current_interval[1] - current_interval[0]
-            current_interval = interval
-    total_length += current_interval[1] - current_interval[0]
-    return total_length
+# def sum_of_intervals(intervals):
+#     intervals = sorted(intervals, key=lambda x: x[0])
+#     print(intervals)
+#     total_length = 0
+#     current_interval = list(intervals[0])
+#     print(current_interval)
+#     for interval in intervals[1:]:
+#         if interval[0] <= current_interval[1]:
+#             current_interval[1] = max(current_interval[1], interval[1])
+#         else:
+#             total_length += current_interval[1] - current_interval[0]
+#             current_interval = interval
+#     total_length += current_interval[1] - current_interval[0]
+#     return total_length
+#
+# print(sum_of_intervals([(1, 4), (7, 10), (3, 5)]))
 
-print(sum_of_intervals([(1, 4), (7, 10), (3, 5)]))
+# def decipher_this(s):
+#     s_digit = str()
+#     s_str = str()
+#     res = []
+#     s = s.split()
+#     for i in s:
+#         for j in i:
+#             if j.isdigit():
+#                 s_digit += j
+#             elif j.isalpha():
+#                 s_str +=j
+#         if len(s_str)>2:
+#             s_str_2 = s_str[-1]
+#             s_str_end = s_str[0]
+#             res.append(chr(int(s_digit)) + s_str_2 + s_str[1:-1] + s_str_end)
+#         elif 0<len(s_str)<=2:
+#             res.append(chr(int(s_digit)) + s_str[::-1])
+#         elif len(s_str) == 0:
+#             res.append(chr(int(s_digit)))
+#         s_digit = str()
+#         s_str = str()
+#
+#     return ' '.join(res)
+#
+# print(decipher_this("84 109ero 104e 115wa 116eh 108sse 104e 115eokp"))
 
+
+# def strip_comments(text, comment_markers):
+#     lines = text.split('\n')
+#     print(lines)
+#     for i in range(len(lines)):
+#         for marker in comment_markers:
+#             index = lines[i].find(marker)
+#             print(index)
+#             if index != -1:
+#                 lines[i] = lines[i][:index].rstrip()
+#
+#         else:
+#             lines[i] = lines[i].rstrip()
+#
+#     result = '\n'.join(lines)
+#     return result
+#
+# print(strip_comments('\tbananas\n. - lemons\nlemons @ @ pears strawberries -\nlemons\n-', ["'", '!', '^', '-', ',', '.', '#', '@', '=']))
+
+# def valid_braces(s):
+#     stack = []
+#     mapping = {')': '(', ']': '[', '}': '{'}
+#
+#     for char in s:
+#         if char in mapping.values():
+#             stack.append(char)
+#         elif char in mapping.keys():
+#             if not stack or stack.pop() != mapping[char]:
+#                 return False
+#         else:
+#             return False
+#
+#     return not stack
+#
+# print(("()("))
+
+# def next_bigger(n):
+#     digits = list(str(n))
+#     i = len(digits) - 2
+#     while i >= 0 and digits[i] >= digits[i + 1]:
+#         i -= 1
+#     if i == -1:
+#         return -1
+#     j = len(digits) - 1
+#     while digits[j] <= digits[i]:
+#         j -= 1
+#     digits[i], digits[j] = digits[j], digits[i]
+#     digits[i + 1:] = reversed(digits[i + 1:])
+#     result = int(''.join(digits))
+#     return result
+#
+# print(next_bigger(2017))
+
+# def to_jaden_case(string):
+#     string = string.split()
+#     print (string)
+#     print
+#     return ' '.join([i.capitalize() for i in string])
+#
+# print(to_jaden_case("How can mirrors be real if our eyes aren't real"))
+
+# from datetime import datetime
+#
+#
+# def check_coupon(enteredCode, correctCode, currentDate, expirationDate):
+#     if enteredCode == correctCode and is_coupon_valid(currentDate, expirationDate):
+#         return True
+#     else:
+#         return False
+#
+#
+# def is_coupon_valid(currentDate, expirationDate):
+#     current_date_obj = datetime.strptime(currentDate, "%B %d, %Y")
+#     expiration_date_obj = datetime.strptime(expirationDate, "%B %d, %Y")
+#     print(current_date_obj, expiration_date_obj)
+#     if current_date_obj <= expiration_date_obj:
+#         return True
+#     else:
+#         return False
+#
+# print(check_coupon('123','123','September 5, 2014','October 1, 2014'))
