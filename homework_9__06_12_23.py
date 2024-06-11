@@ -13,6 +13,11 @@ def total_sum_of_category(good: str, g_prices: list) -> float:
     return round(total, 2)
 
 def names(data: list) -> list:
+    """
+    This function returns list of names of customers
+    :param data: list of
+    :return: list(set(lst_of_names))
+    """
     lst_of_names = []
     for i in data:
         if len(i) == 5:
@@ -22,6 +27,9 @@ def names(data: list) -> list:
     return list(set(lst_of_names))
 
 def money_of_every(name: str, lst: list) -> float:
+    """
+
+    """
     money = 0
     name = name.split(' ')
     for i, j in lst:

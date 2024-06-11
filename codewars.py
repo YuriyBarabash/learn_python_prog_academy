@@ -80,7 +80,6 @@
 #     return s
 
 
-
 # text = input('text: ')
 # text = text.split()
 # text = sorted(set(text), key = text.index)
@@ -192,14 +191,13 @@ import time
 import timeit
 
 
-
-
 def measure_time(func):
     def wrapper(*args, **kwargs):
         start = time.perf_counter()
         res = func(*args, **kwargs)
         stop = time.perf_counter()
         return f'{res}-----{stop - start:.8f} sec'
+
     return wrapper
 
 
@@ -440,7 +438,6 @@ import math
 #             yield num
 
 
-
 # def diamond(n):
 #     a = 1
 #     b = n
@@ -588,3 +585,218 @@ import math
 #         return False
 #
 # print(check_coupon('123','123','September 5, 2014','October 1, 2014'))
+
+# def find_uniq(arr):
+#     arr.sort(key=lambda x: x.upper())
+#     print(arr)
+#     arr1 = [set(i.upper()) for i in arr]
+#     print(arr1)
+#     return arr[0] if arr1.count(arr1[0]) == 1 and str(arr1[0]) != 'set()' else arr[-1]
+#
+# print(find_uniq(['bcd','cbd','dbac','bacd','dbca','cabd','cdab', 'foo']))
+
+# def sort_gift_code(code):
+#     res = [i for i in code]
+#     res.sort()
+#     return res
+#
+#
+# print(sort_gift_code('sdasbsa'))
+
+# def encode(st):
+#     for i in st:
+#         if i == 'a':
+#             st = st.replace(i, '1')
+#         if i == 'e':
+#             st = st.replace(i, '2')
+#         if i == 'i':
+#             st = st.replace(i, '3')
+#         if i == 'o':
+#             st = st.replace(i, '4')
+#         if i == 'u':
+#             st = st.replace(i, '5')
+#     return st
+#
+# print(encode('hello'))
+
+# def encrypt_this(text: str) -> str:
+#     """
+#     Encrypt this!
+#     :param text: str
+#     :return: str
+#     """
+#
+#     if len(text) == 0:
+#         return ''
+#     text = text.split(' ')
+#     res = [(str(ord(i[0]))+i[1:][::-1]) for i in text]
+#     return ' '.join(res)
+#
+# print(encrypt_this('A wise old owl lived in an oak'))
+
+# def gps(s: int, x: list) -> int:
+#     """
+#     Speed Control
+#     :param s: int
+#     :param x: list
+#     :return: int
+#     """
+#     return int(max(3600*(x[i+1] - x[i])/s for i in range(len(x)-1)))
+#
+# print (gps(20, [0.0, 0.18, 0.36, 0.54, 0.72, 1.05, 1.26, 1.47, 1.92, 2.16, 2.4, 2.64, 2.88, 3.12, 3.36, 3.6, 3.84]))
+
+# def vowel_indices(word):
+#     res = []
+#     vowel = 'aeoiu'
+#     for i in word:
+#         if i in vowel:
+#             res.append(word.index(i)+1)
+#     return res
+#
+# print(vowel_indices("apple"))
+
+
+# import re
+# def func1(s):
+#     """
+#     A function that takes a string as input and finds all the integers in the string.
+#
+#     Parameters:
+#     s (str): The input string to search for integers.
+#
+#     Returns:
+#     list: A list of integers found in the input string.
+#     """
+#
+#     pattern = '\d+'
+#     result = re.findall(pattern, s)
+#     return result
+#
+# print(func1('The30quick20brown10f0x1203jumps914ov3r1349the102l4zy dog'))
+
+# import re
+#
+# # 1. re.match()
+# pattern = r'hello'
+# string = ' world hello'
+# if re.match(pattern, string):
+#     print("Match found!")
+# else:
+#     print("No match found.")
+#
+# # 2. re.search()
+# pattern = r'world'
+# string = 'hello world'
+# match = re.search(pattern, string)
+# if match:
+#     print("Match found at index:", match.start())
+#
+# # 3. re.findall()
+# pattern = r'\D+'
+# string = 'The price is $20 and $50'
+# matches = re.findall(pattern, string)
+# print("All matches:", matches)
+#
+# # 4. re.finditer()
+# pattern = r'\d+'
+# string = 'Hello4 World26'
+# iterator = re.finditer(pattern, string)
+# for match in iterator:
+#     print("Match found:", match.group())
+#
+# # 5. re.sub()
+# pattern = r'\d+'
+# string = 'I have 2 apples and 3 oranges'
+# new_string = re.sub(pattern, '5', string)
+# print("New string:", new_string)
+#
+# # 6. re.split()
+# pattern = r'\D+'
+# string = 'Split8 this2 string12'
+# parts = re.split(pattern, string)
+# print("Split parts:", parts)
+#
+# # 7. re.compile()
+# pattern = re.compile(r'\d+')
+# string = 'There are 3 cats and 5 dogs'
+# matches = pattern.findall(string)
+# print("Compiled pattern matches:", matches)
+#
+# # 8. re.fullmatch()
+# pattern = r'\d+'
+# string = '123'
+# if re.fullmatch(pattern, string):
+#     print("Full match found!")
+# else:
+#     print("No full match found.")
+#
+# # 9. re.escape()
+# string = 'Escape special characters like . ^ $ * + ? { } [ ] \ | ( )'
+# escaped_string = re.escape(string)
+# print("Escaped string:", escaped_string)
+#
+# # 10. re.group()
+# pattern = r'(\w+) (\w+)'
+# string = 'John Doe'
+# match = re.match(pattern, string)
+# if match:
+#     print("First name:", match.group(1))
+#     print("Last name:", match.group(2))
+
+# def new_avg(arr, newavg):
+#     a = newavg*(len(arr) + 1) - sum(arr)
+#     return a if a > 0 else ValueError
+# print (new_avg([14, 30, 5, 7, 9, 11, 16], 90))
+import decimal
+
+
+# def parse_float(string):
+#     """
+#     A function to parse a string to a float if possible, otherwise return None.
+#
+#     Parameters:
+#     string (str): The input string to be parsed to float.
+#
+#     Returns:
+#     float or None: The parsed float if successful, None otherwise.
+#     """
+#     if isinstance(string, list):
+#         lst = []
+#         for i in string:
+#             if i.isalpha():
+#                 pass
+#             elif isinstance(eval(i), float):
+#                 lst.append(float(i))
+#         return list(map(decimal.Decimal, lst)) if lst else None
+#     return eval(string) if not string.isalpha() else None
+#
+#
+# print(parse_float(['28.32', '4', 'ab', '23.78', '3.2']))
+
+# def count_pages(summa: int) -> int:
+#     summa_pages = 0
+#     n = 1
+#     count = 1
+#     while summa_pages <= summa:
+#         for i in str(n):
+#             summa_pages += int(i)
+#             n += 1
+#             print(summa_pages)
+#
+#     return n
+#
+# print(count_pages(1095))
+
+# def prefill(n, v=None):
+#     try:
+#         # n = int(n)
+#         if n < 0:
+#             raise ValueError
+#         elif not isinstance(n,int):
+#             raise TypeError
+#
+#     except (ValueError, TypeError):
+#         return f'{n} is invalid'
+#     return [v] * n
+#
+# print (prefill([11],[3,5,6]))

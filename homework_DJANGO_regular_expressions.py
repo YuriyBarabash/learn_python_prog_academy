@@ -26,7 +26,5 @@ def check_email(email):
 def check_login(login):
     if re.match(r'^[a-zA-Z0-9]{2,10}$', login):
         return True
-    return False
 
-
-
+    

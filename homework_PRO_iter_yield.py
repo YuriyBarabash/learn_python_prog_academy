@@ -65,7 +65,7 @@ class Dish:
 
     def __getitem__(self, item):
         if isinstance(item, int) and item > len(self.names) - 1:
-            raise IndexError(f'Index of product name out of range, max = {len(self.names)-1}')
+            raise IndexError(f'Index of product name out of range, max = {len(self.names) - 1}')
 
         if isinstance(item, int):
             return self.names[item], self.prices[item]
@@ -95,12 +95,14 @@ def main():
 
     print(len(dish))
 
-    #print(dish[5])
-    for i,j in dish[::2]:
+    # print(dish[5])
+    for i, j in dish[::2]:
         print(f'{i}----{j}$')
+
 
 if __name__ == '__main__':
     main()
+
 
 # Task 3 geometric progression
 def g_progression(n, i):
@@ -109,9 +111,11 @@ def g_progression(n, i):
         yield temp
         temp *= i
 
+
 generate = g_progression(4, 2)
 for _ in range(10):
     print(next(generate))
+
 
 # Task 4 own_range
 def own_range(start, stop, step=1):
@@ -125,8 +129,10 @@ def own_range(start, stop, step=1):
             yield current
             current -= abs(step)
 
+
 for i in own_range(1, 20, 2):
     print(i)
+
 
 # Task 5
 def generate_primes(limit):
@@ -148,10 +154,11 @@ print(res)
 
 # Task 6
 n = int(input('n= '))
-lst = [i**3 for i in range(2, n+1)]
+lst = [i ** 3 for i in range(2, n + 1)]
 print(lst)
 
-#Task 7
+
+# Task 7
 def fibonacci_generator():
     a, b = 0, 1
     while True:
@@ -163,9 +170,9 @@ fib_gen = fibonacci_generator()
 res = ' '.join(map(str, (next(fib_gen) for _ in range(10))))
 print(res)
 
-
-#Task 8
+# Task 8
 from datetime import timedelta, date
+
 
 def generate_dates(start, end):
     current_date = start
@@ -179,5 +186,5 @@ end = date(2024, 12, 31)
 weeks = 0
 for generated_date in generate_dates(start, end):
     print(generated_date)
-    weeks +=1
+    weeks += 1
 print(f'{weeks} weeks in current period ')
